@@ -7,6 +7,7 @@ from sklearn.metrics import f1_score, precision_score, recall_score, roc_auc_sco
 from sklearn.utils.class_weight import compute_sample_weight
 from xgboost import XGBClassifier
 from loguru import logger
+import json
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -20,6 +21,7 @@ class Trainer:
     def __init__(self):
         with open('data/train.data', 'rb') as file:
             self.X_train, self.y_train = pickle.load(file)
+        logger.info(json.dumps(self.X_train.head(1).to_dict('index')))
 
         with open('data/test.data', 'rb') as file:
             self.X_test, self.y_test = pickle.load(file)
@@ -46,6 +48,9 @@ class Trainer:
 
         self.current_model = open(
             'models/latest_version.txt', 'r').readlines()[-1]
+
+        with open(f'models/{self.current_model}', 'rb') as file:
+            self.model = pickle.load(file)
 
     def clean_column_name(self, columns):
         '''Method to clean up the column names'''
