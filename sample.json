@@ -8,7 +8,7 @@
     "Status of existing checking account": "0 <= <200 DM",
     "Credit history": "all credits at this bank paid back duly",
     "Purpose": "radio/television",
-    "Savings account/bonds": "100 <= lt500 DM",
+    "Savings account/bonds": "100 <= <500 DM",
     "Present employment since": "1<= < 4 years",
     "Personal status and sex": "female:divorced/separated/married",
     "Other debtors / guarantors": "co-applicant",
