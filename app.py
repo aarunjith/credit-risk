@@ -24,7 +24,8 @@ async def predict_score(cust_data: Request):
     data = await cust_data.json()
     data = pd.DataFrame.from_dict(data, orient='index').T
     data = trainer.preprocess(data)
-    logger.info(data)
+    score = trainer.model.predict_proba(data)[:, 1][0]
+    return {"predicted_score": float(score)}
 
 
 @app.get('/train')
