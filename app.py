@@ -28,6 +28,24 @@ async def predict_score(cust_data: Request):
     return {"predicted_score": float(score)}
 
 
+@app.post('/add_data')
+async def predict_score(cust_data: Request):
+    data = await cust_data.json()
+    try:
+        data = pd.DataFrame.from_dict(data, orient='index').T
+        X = data[[col for col in data.columns if col != 'Cost Matrix(Risk)']]
+        y = list(data['Cost Matrix(Risk)'])
+        X = trainer.preprocess(X)
+        logger.info(f"Shape before : {trainer.X_train.shape}")
+        trainer.X_train = pd.concat([trainer.X_train, X])
+        logger.info(f"Shape after : {trainer.X_train.shape}")
+        trainer.y_train = np.array(list(trainer.y_train) + y)
+        return {"status": "SUCCESS"}
+    except Exception as e:
+        return {"status": "FAILURE", "error": e}
+
+
 @app.get('/train')
 async def start_training():
-    pass
+    result = trainer.train()
+    return result

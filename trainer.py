@@ -21,7 +21,6 @@ class Trainer:
     def __init__(self):
         with open('data/train.data', 'rb') as file:
             self.X_train, self.y_train = pickle.load(file)
-        logger.info(json.dumps(self.X_train.head(1).to_dict('index')))
 
         with open('data/test.data', 'rb') as file:
             self.X_test, self.y_test = pickle.load(file)
@@ -94,6 +93,8 @@ class Trainer:
     def train(self):
         '''Train the model using prebuilt dataframe'''
 
+        logger.info(f'Shape of the training data: {self.X_train.shape}')
+
         filename = f'xgboost_v{int(self.current_model.split("_v")[-1][0])+1}.model'
         logger.info('Training the model using saved training data')
         model = XGBClassifier(learning_rate=0.01,
@@ -123,6 +124,8 @@ class Trainer:
         logger.info(f"Recall: {recall}")
         logger.info(f"Precision: {precision}")
         logger.info(f"F1-score: {f1}")
+
+        return {"AUC": auc, "recall": recall, "precision": precision, "f1": f1}
 
 
 if __name__ == "__main__":

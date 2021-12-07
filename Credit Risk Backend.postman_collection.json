@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "77e403a7-9ef9-4bc4-8828-fbe9736966ae",
+		"name": "Credit Risk Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Predict Score",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Duration in month\": 12,\r\n    \"Credit amount\": 5999,\r\n    \"Installment rate in percentage of disposable income\": 2,\r\n    \"Age in years\": 52,\r\n    \"Number of existing credits at this bank\": 4,\r\n    \"Number of people being liable to provide maintenance for\": 2,\r\n    \"Status of existing checking account\": \"0 <= <200 DM\",\r\n    \"Credit history\": \"all credits at this bank paid back duly\",\r\n    \"Purpose\": \"radio/television\",\r\n    \"Savings account/bonds\": \"100 <= lt500 DM\",\r\n    \"Present employment since\": \"1<= < 4 years\",\r\n    \"Personal status and sex\": \"female:divorced/separated/married\",\r\n    \"Other debtors / guarantors\": \"co-applicant\",\r\n    \"Present residence since\": \"1\",\r\n    \"Property\": \"real estate\",\r\n    \"Property_real estate\": 0,\r\n    \"Other installment plans\": \"bank\",\r\n    \"Housing\": \"rent\",\r\n    \"Job\": \"skilled employee / official\",\r\n    \"Telephone\": \"none\",\r\n    \"foreign worker\": \"no\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/predict",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"predict"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Duration in month\": 12,\r\n    \"Credit amount\": 5999,\r\n    \"Installment rate in percentage of disposable income\": 2,\r\n    \"Age in years\": 52,\r\n    \"Number of existing credits at this bank\": 4,\r\n    \"Number of people being liable to provide maintenance for\": 2,\r\n    \"Status of existing checking account\": \"0 <= <200 DM\",\r\n    \"Credit history\": \"all credits at this bank paid back duly\",\r\n    \"Purpose\": \"radio/television\",\r\n    \"Savings account/bonds\": \"100 <= lt500 DM\",\r\n    \"Present employment since\": \"1<= < 4 years\",\r\n    \"Personal status and sex\": \"female:divorced/separated/married\",\r\n    \"Other debtors / guarantors\": \"co-applicant\",\r\n    \"Present residence since\": \"1\",\r\n    \"Property\": \"real estate\",\r\n    \"Property_real estate\": 0,\r\n    \"Other installment plans\": \"bank\",\r\n    \"Housing\": \"rent\",\r\n    \"Job\": \"skilled employee / official\",\r\n    \"Telephone\": \"none\",\r\n    \"foreign worker\": \"no\",\r\n    \"Cost Matrix(Risk)\" : 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/add_data",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"add_data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Start Training",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/train",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"train"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
